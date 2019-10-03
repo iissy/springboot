@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /demo
+    context-path: /
 spring:
   datasource:
     url: jdbc:mysql://192.168.111.141:3306/hrefs?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8

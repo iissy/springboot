@@ -36,7 +36,7 @@ public class AsyController {
             @ApiImplicitParam(name = "id", value = "用户编号", dataType = DataType.INT, paramType = ParamType.PATH) })
     public ApiResponse<UserLink> get(@PathVariable Integer id) {
         log.info(id.toString());
-        UserLink link = dao.selectById(id);
+        UserLink link = dao.findOneById(id);
         return ApiResponse.<UserLink>builder().code(200).message("操作成功")
                 .data(new UserLink(id, link.getTitle(), link.getUrl())).build();
     }
