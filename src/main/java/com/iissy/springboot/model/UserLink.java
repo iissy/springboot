@@ -11,8 +11,8 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "用户实体", description = "User Entity")
-public class User implements Serializable {
+@ApiModel(value = "用户实体", description = "UserLink Entity")
+public class UserLink implements Serializable {
     private static final long serialVersionUID = 5057954049311281252L;
     /**
      * 主键id
@@ -22,11 +22,11 @@ public class User implements Serializable {
     /**
      * 用户名
      */
-    @ApiModelProperty(value = "用户名", required = true)
-    private String name;
+    @ApiModelProperty(value = "标题", required = true)
+    private String title;
     /**
      * 工作岗位
      */
-    @ApiModelProperty(value = "工作岗位", required = true)
-    private String job;
+    @ApiModelProperty(value = "地址", required = true)
+    private String url;
 }
