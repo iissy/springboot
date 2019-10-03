@@ -3,7 +3,7 @@ package com.iissy.springboot.controller;
 import com.iissy.springboot.common.ApiResponse;
 import com.iissy.springboot.common.DataType;
 import com.iissy.springboot.common.ParamType;
-import com.iissy.springboot.dao.LinkDao;
+import com.iissy.springboot.jpa.LinkDao;
 import com.iissy.springboot.model.UserLink;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class AsyController {
             @ApiImplicitParam(name = "id", value = "用户编号", dataType = DataType.INT, paramType = ParamType.PATH) })
     public ApiResponse<UserLink> get(@PathVariable Integer id) {
         log.info(id.toString());
-        UserLink link = dao.findOneById(id);
+        UserLink link = dao.queryForObject(id);
         return ApiResponse.<UserLink>builder().code(200).message("操作成功")
                 .data(new UserLink(id, link.getTitle(), link.getUrl())).build();
     }
