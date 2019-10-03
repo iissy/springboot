@@ -23,8 +23,8 @@ public class Swagger2Config {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("spring-boot-demo").description("这是一个简单的 Swagger API 演示")
-                .contact(new Contact("Yangkai.Shen", "http://xkcoding.com", "237497819@qq.com"))
-                .version("1.0.0-SNAPSHOT").build();
+        return new ApiInfoBuilder().title("spring-boot").description("这是一个简单的 Swagger API 演示")
+                .contact(new Contact("何敏", "https://www.hrefs.cn", "pinbor@iissy.com")).version("1.0.0-SNAPSHOT")
+                .build();
     }
 }
