@@ -1,5 +1,6 @@
 # springboot 样例列表
 + Spring Data JPA
++ mybatis
 + Swagger
 + Spring Data Redis
 + Spring Data for Elasticsearch
