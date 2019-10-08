@@ -34,8 +34,10 @@ spring:
         min-idle: 0
   data:
     elasticsearch:
-      cluster-name: elasticsearch
-      cluster-nodes: 192.168.72.130:9200
+      cluster-name: docker-cluster
+      cluster-nodes: 192.168.111.141:9300
+      repositories:
+        enabled: true
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

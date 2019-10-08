@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "elasticsearch请求实体", description = "elasticsearch 处理的实体类")
-@Document(indexName = "articleindex", type = "article")
+@Document(indexName = "asy", type = "article")
 public class Article implements Serializable {
     private static final long serialVersionUID = 804354423280231L;
 
