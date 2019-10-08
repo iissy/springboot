@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/dao")
-@Api(tags = "爱施员", description = "用户管理", value = "用户管理")
+@Api(tags = "water", description = "用户管理", value = "用户管理")
 public class DaoController {
     private final LinkDao dao;
 
@@ -39,7 +39,7 @@ public class DaoController {
     @GetMapping("/jpa/{id}")
     @ApiOperation(value = "主键查询", notes = "备注")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "用户编号", dataType = DataType.INT, paramType = ParamType.PATH) })
+            @ApiImplicitParam(name = "id", value = "编号", dataType = DataType.INT, paramType = ParamType.PATH) })
     public ApiResponse<UserLink> get(@PathVariable Integer id) {
         log.info(id.toString());
         UserLink link = dao.queryForObject(id);
@@ -48,7 +48,7 @@ public class DaoController {
     }
 
     @GetMapping("/mybatis/all")
-    @ApiOperation(value = "主键查询", notes = "备注")
+    @ApiOperation(value = "获取所有数据", notes = "备注")
     public ApiResponse<List<UserLink>> index() {
         log.info("get all data");
         List<UserLink> list = mapper.selectAllUser();
@@ -58,7 +58,7 @@ public class DaoController {
     @GetMapping("/mybatis/{id}")
     @ApiOperation(value = "主键查询", notes = "备注")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "用户编号", dataType = DataType.INT, paramType = ParamType.PATH) })
+            @ApiImplicitParam(name = "id", value = "编号", dataType = DataType.INT, paramType = ParamType.PATH) })
     public ApiResponse<UserLink> get2(@PathVariable Integer id) {
         log.info(id.toString());
         UserLink link = mapper.selectUserById(id);
