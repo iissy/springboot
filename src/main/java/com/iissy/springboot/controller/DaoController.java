@@ -5,7 +5,7 @@ import java.util.List;
 import com.iissy.springboot.common.ApiResponse;
 import com.iissy.springboot.common.DataType;
 import com.iissy.springboot.common.ParamType;
-import com.iissy.springboot.jpa.LinkDao;
+import com.iissy.springboot.jdbc.*;
 import com.iissy.springboot.model.UserLink;
 import com.iissy.springboot.mybatis.UserLinkMapper;
 
