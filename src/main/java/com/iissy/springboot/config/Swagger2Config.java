@@ -17,14 +17,19 @@ public class Swagger2Config {
 
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.iissy.springboot.controller")).paths(PathSelectors.any())
-                .build();
+        return new Docket(DocumentationType.SWAGGER_2)
+        .apiInfo(apiInfo())
+        .select()
+        .apis(RequestHandlerSelectors.basePackage("com.iissy.springboot.controller"))
+        .paths(PathSelectors.any())
+        .build();
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("spring-boot").description("这是一个简单的 Swagger API 演示")
-                .contact(new Contact("何敏", "https://www.hrefs.cn", "pinbor@iissy.com")).version("1.0.0-SNAPSHOT")
-                .build();
+        return new ApiInfoBuilder()
+        .title("spring-boot")
+        .description("这是一个简单的 Swagger API 演示")
+        .contact(new Contact("何敏", "https://www.hrefs.cn", "pinbor@iissy.com")).version("1.0.0-SNAPSHOT")
+        .build();
     }
 }
