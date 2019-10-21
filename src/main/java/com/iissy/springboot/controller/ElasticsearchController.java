@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/elasticsearch")
-@Api(tags = "water", description = "elasticsearch", value = "elasticsearch")
+@Api(tags = "elasticsearch", description = "elasticsearch", value = "elasticsearch")
 public class ElasticsearchController {
     @Autowired
     private IArticleRepository articleRepository;
@@ -27,7 +27,6 @@ public class ElasticsearchController {
     public ApiResponse<Article> get(@RequestBody Article article) {
         log.info(article.toString());
         Article result = articleRepository.save(article);
-        return ApiResponse.<Article>builder().code(200).message("操作成功")
-        .data(result).build();
+        return ApiResponse.<Article>builder().code(200).message("操作成功").data(result).build();
     }
 }

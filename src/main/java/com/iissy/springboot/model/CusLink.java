@@ -1,18 +1,18 @@
 package com.iissy.springboot.model;
 
+import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "用户实体", description = "UserLink Entity")
-public class UserLink implements Serializable {
+@ApiModel(value = "网摘实体", description = "网摘实体")
+public class CusLink implements Serializable {
     private static final long serialVersionUID = 5057954049311281252L;
     /**
      * 主键id

@@ -5,9 +5,9 @@ import java.util.List;
 import com.iissy.springboot.common.ApiResponse;
 import com.iissy.springboot.common.DataType;
 import com.iissy.springboot.common.ParamType;
-import com.iissy.springboot.jdbc.*;
-import com.iissy.springboot.model.UserLink;
-import com.iissy.springboot.mybatis.UserLinkMapper;
+import com.iissy.springboot.jdbc.CusLinkDao;
+import com.iissy.springboot.model.CusLink;
+import com.iissy.springboot.mybatis.CusLinkMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,45 +24,53 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/dao")
-@Api(tags = "water", description = "用户管理", value = "用户管理")
+@Api(tags = "dao", description = "网摘管理", value = "网摘管理")
 public class DaoController {
-    private final LinkDao dao;
+    private final CusLinkDao dao;
 
     @Autowired
-    private UserLinkMapper mapper;
+    private CusLinkMapper mapper;
 
     @Autowired
-    public DaoController(LinkDao dao) {
+    public DaoController(CusLinkDao dao) {
         this.dao = dao;
     }
 
-    @GetMapping("/jpa/{id}")
+    @GetMapping("/jdbc/{id}")
     @ApiOperation(value = "主键查询", notes = "备注")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "编号", dataType = DataType.INT, paramType = ParamType.PATH) })
-    public ApiResponse<UserLink> get(@PathVariable Integer id) {
+    public ApiResponse<CusLink> get(@PathVariable Integer id) {
         log.info(id.toString());
-        UserLink link = dao.queryForObject(id);
-        return ApiResponse.<UserLink>builder().code(200).message("操作成功")
-                .data(new UserLink(id, link.getTitle(), link.getUrl())).build();
+        CusLink link = dao.queryForObject(id);
+        if (link == null) {
+            return ApiResponse.<CusLink>builder().code(404).message("").data(null).build();
+        } else {
+            return ApiResponse.<CusLink>builder().code(200).message("操作成功")
+                    .data(new CusLink(id, link.getTitle(), link.getUrl())).build();
+        }
     }
 
     @GetMapping("/mybatis/all")
     @ApiOperation(value = "获取所有数据", notes = "备注")
-    public ApiResponse<List<UserLink>> index() {
+    public ApiResponse<List<CusLink>> index() {
         log.info("get all data");
-        List<UserLink> list = mapper.selectAllUser();
-        return ApiResponse.<List<UserLink>>builder().code(200).message("操作成功").data(list).build();
+        List<CusLink> list = mapper.selectAllUser();
+        return ApiResponse.<List<CusLink>>builder().code(200).message("操作成功").data(list).build();
     }
 
     @GetMapping("/mybatis/{id}")
     @ApiOperation(value = "主键查询", notes = "备注")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "编号", dataType = DataType.INT, paramType = ParamType.PATH) })
-    public ApiResponse<UserLink> get2(@PathVariable Integer id) {
+    public ApiResponse<CusLink> get2(@PathVariable Integer id) {
         log.info(id.toString());
-        UserLink link = mapper.selectUserById(id);
-        return ApiResponse.<UserLink>builder().code(200).message("操作成功")
-                .data(new UserLink(id, link.getTitle(), link.getUrl())).build();
+        CusLink link = mapper.selectCusLinkById(id);
+        if (link == null) {
+            return ApiResponse.<CusLink>builder().code(404).message("").data(null).build();
+        } else {
+            return ApiResponse.<CusLink>builder().code(200).message("操作成功")
+                    .data(new CusLink(id, link.getTitle(), link.getUrl())).build();
+        }
     }
 }

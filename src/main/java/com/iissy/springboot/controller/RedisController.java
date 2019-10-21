@@ -1,11 +1,10 @@
 package com.iissy.springboot.controller;
 
+import com.iissy.springboot.common.ApiResponse;
 import com.iissy.springboot.common.DataType;
 import com.iissy.springboot.common.ParamType;
 import com.iissy.springboot.params.RedisParam;
 import com.iissy.springboot.redis.RedisClient;
-
-import com.iissy.springboot.common.ApiResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/redis")
-@Api(tags = "water", description = "用户管理", value = "用户管理")
+@Api(tags = "redis", description = "redis", value = "redis")
 public class RedisController {
     @Autowired
     private RedisClient client;
@@ -36,8 +35,7 @@ public class RedisController {
     public ApiResponse<String> get(@PathVariable String key) {
         log.info(key.toString());
         String value = client.get(key).toString();
-        return ApiResponse.<String>builder().code(200).message("操作成功")
-        .data(value).build();
+        return ApiResponse.<String>builder().code(200).message("操作成功").data(value).build();
     }
 
     @PostMapping("/set")
@@ -47,7 +45,6 @@ public class RedisController {
         String value = param.getValue();
         log.info(String.format("%s, %s", key, value));
         Boolean result = client.set(key, value);
-        return ApiResponse.<Boolean>builder().code(200).message("操作成功")
-        .data(result).build();
+        return ApiResponse.<Boolean>builder().code(200).message("操作成功").data(result).build();
     }
 }
