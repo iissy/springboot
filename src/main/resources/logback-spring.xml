@@ -5,12 +5,6 @@
     <property name="app.name" value="iissy" />
     <!--ConsoleAppender 用于在屏幕上输出日志-->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
-        <!--定义了一个过滤器,在LEVEL之下的日志输出不会被打印出来-->
-        <!--这里定义了DEBUG，也就是控制台不会输出比ERROR级别小的日志-->
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>info</level>
-        </filter>
-        <!-- encoder 默认配置为PatternLayoutEncoder -->
         <!--定义控制台输出格式-->
         <encoder>
             <pattern>%d [%thread] %-5level %logger{36} [%file : %line] - %msg%n</pattern>
@@ -21,22 +15,19 @@
         <!--定义日志输出的路径-->
         <!--这里的scheduler.manager.server.home 没有在上面的配置中设定，所以会使用java启动时配置的值-->
         <!--比如通过 java -Dscheduler.manager.server.home=/path/to XXXX 配置该属性-->
-        <!-- <file>${logback}/${app.name}.log</file> -->
+        <file>logs/${app.name}.log</file>
         <!--定义日志滚动的策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--定义文件滚动时的文件名的格式-->
-            <fileNamePattern>logs/${app.name}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
-            <!--每个日志文件最大100MB-->
+            <fileNamePattern>logs/${app.name}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--每个日志文件最大10KB-->
             <maxFileSize>10KB</maxFileSize>
             <!--60天的时间周期，日志量最大20GB-->
             <maxHistory>60</maxHistory>
             <!-- 该属性在 1.1.6版本后 才开始支持-->
             <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
-        <!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <fileNamePattern>logs/${app.name}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 
-        </triggeringPolicy> -->
         <!--定义输出格式-->
         <encoder>
             <pattern>%d [%thread] %-5level %logger{36} [%file : %line] - %msg%n</pattern>
@@ -45,11 +36,10 @@
 
     <!--root是默认的logger 这里设定输出级别是debug-->
     <root level="info">
-        <!--定义了两个appender，日志会通过往这两个appender里面写-->
         <appender-ref ref="stdout" />
     </root>
 
-    <!--对于类路径以 com.example.logback 开头的Logger,输出级别设置为warn,并且只输出到控制台-->
+    <!--对于类路径以 com.iissy.springboot 开头的Logger,输出级别设置为info,并且只输出到控制台-->
     <!--这个logger没有指定appender，它会继承root节点中定义的那些appender-->
     <logger name="com.iissy.springboot" level="info">
         <appender-ref ref="file" />
